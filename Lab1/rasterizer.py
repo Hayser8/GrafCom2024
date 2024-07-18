@@ -42,6 +42,7 @@ while isRunning:
 
 
     pygame.display.flip()
+    rend.glGenerateFrameBuffer("render.bmp")
     clock.tick(60)
 
 pygame.quit()
