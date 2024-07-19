@@ -13,12 +13,12 @@ clock = pygame.time.Clock()
 rend = Renderer(screen) 
 rend.vertexShader = vertexShader
 
-modelo1 = Model("pruba.obj")
+modelo1 = Model("Dog.OBJ")
 modelo1.translate[0] = width / 2
 modelo1.translate[1] = height / 2
 
-modelo1.scale[0] = 15
-modelo1.scale[1] = 15
+modelo1.scale[0] = 200
+modelo1.scale[1] = 200
 rend.models.append(modelo1)
 
 rend.glColor(1,0.5,1)
@@ -32,8 +32,12 @@ while isRunning:
         if event.type == pygame.QUIT:
             isRunning = False
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCPAE:
+            if event.key == pygame.K_ESCAPE:
                 isRunning = False
+            elif event.key == pygame.K_LEFT:
+                modelo1.rotate[1] -= 5 
+            elif event.key == pygame.K_RIGHT:
+                modelo1.rotate[1] += 5 
 
     rend.glClear()
 

@@ -17,14 +17,15 @@ class Model(object):
 
         rotatexMat = rotacionX(self.rotate[0])
         rotateyMat = rotacionY(self.rotate[1])
-        rotatezMat = rotacionX(self.rotate[2])
+        rotatezMat = rotacionZ(self.rotate[2])
 
         rotatesemifinal = multiplicarMatrices(rotatexMat, rotateyMat)
         rotatefinal = multiplicarMatrices(rotatesemifinal, rotatezMat)
 
-        ScaleMatrix = TrasnlationMatrix(self.scale[0], self.scale[1], self.scale[2])
+        scaleMat = ScaleMatrix(self.scale[0], self.scale[1], self.scale[2])
 
-        ModeloObjeto = multiplicarMatrices(translateMat, rotatefinal)
-        ModeloObjetoFinal = multiplicarMatrices(ModeloObjeto, ScaleMatrix)
+        # Primero escala, luego rotación, luego traslación
+        ModeloObjeto = multiplicarMatrices(scaleMat, rotatefinal)
+        ModeloObjetoFinal = multiplicarMatrices(translateMat, ModeloObjeto)
 
         return ModeloObjetoFinal
