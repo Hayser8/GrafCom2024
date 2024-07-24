@@ -3,6 +3,7 @@ from pygame.locals import *
 from gl import Renderer
 from model import Model
 from shaders import vertexShader
+from gl import *
 
 width = 960
 height = 540
@@ -38,6 +39,10 @@ while isRunning:
                 modelo1.rotate[1] -= 5 
             elif event.key == pygame.K_RIGHT:
                 modelo1.rotate[1] += 5 
+            elif event.key == pygame.K_1:
+                rend.primitiveType = POINTS
+            elif event.key == pygame.K_2:
+                rend.primitiveType = LINES
 
     rend.glClear()
 
