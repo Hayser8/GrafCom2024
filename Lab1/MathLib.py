@@ -54,7 +54,52 @@ def transformarVertice(v, m):
     w = v[0] * m[3][0] + v[1] * m[3][1] + v[2] * m[3][2] + v[3] * m[3][3]
     return [x, y, z, w]
 
+def cofactor(matriz, row, col):
+    submatriz = [[matriz[i][j] for j in range(len(matriz)) if j != col] for i in range(len(matriz)) if i != row]
+    return ((-1) ** (row + col)) * determinante(submatriz)
 
+def determinante(matriz):
+    if len(matriz) == 2:
+        return matriz[0][0] * matriz[1][1] - matriz[0][1] * matriz[1][0]
+    
+    det = 0
+    for col in range(len(matriz)):
+        det += matriz[0][col] * cofactor(matriz, 0, col)
+    return det
+
+def inversaMatriz(m):
+    if len(m) != 4 or len(m[0]) != 4:
+        raise ValueError("La matriz debe ser de 4x4")
+
+    det = determinante(m)
+    if det == 0:
+        raise ValueError("La matriz no tiene inversa")
+    
+    cofactores = [[cofactor(m, row, col) for col in range(4)] for row in range(4)]
+    cofactores_transpuesta = [[cofactores[col][row] for col in range(4)] for row in range(4)]
+    
+    inversa = [[cofactores_transpuesta[row][col] / det for col in range(4)] for row in range(4)]
+    return inversa
+
+def magnitudVector(v):
+    return math.sqrt(sum(vi**2 for vi in v))
+
+def normalizarVector(v):
+    mag = magnitudVector(v)
+    if mag == 0:
+        return [0] * len(v)
+    return [vi / mag for vi in v]
+
+def productoPunto(v1, v2):
+    return sum(vi * vj for vi, vj in zip(v1, v2))
+
+def productoCruz(v1, v2):
+    if len(v1) == 3 and len(v2) == 3:
+        return [v1[1] * v2[2] - v1[2] * v2[1],
+                v1[2] * v2[0] - v1[0] * v2[2],
+                v1[0] * v2[1] - v1[1] * v2[0]]
+    else:
+        raise ValueError("El producto cruz solo está definido para vectores de 3 dimensiones")
     
 
 

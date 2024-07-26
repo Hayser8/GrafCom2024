@@ -15,11 +15,12 @@ rend = Renderer(screen)
 rend.vertexShader = vertexShader
 
 modelo1 = Model("Dog.OBJ")
-modelo1.translate[0] = width / 2
-modelo1.translate[1] = height / 2
+modelo1.translate[0] = -2
+modelo1.translate[1] = -1
+modelo1.translate[2] = -10 
 
-modelo1.scale[0] = 200
-modelo1.scale[1] = 200
+modelo1.scale[0] = 5
+modelo1.scale[1] = 5
 rend.models.append(modelo1)
 
 rend.glColor(1,0.5,1)
