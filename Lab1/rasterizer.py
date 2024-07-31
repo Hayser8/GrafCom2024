@@ -44,6 +44,27 @@ while isRunning:
                 rend.primitiveType = POINTS
             elif event.key == pygame.K_2:
                 rend.primitiveType = LINES
+            elif event.key == pygame.K_m:  # Medium shot
+                modelo1.translate[0] = -2
+                modelo1.translate[1] = -1
+                modelo1.translate[2] = -10
+                rend.glGenerateFrameBuffer("medium_shot.bmp")
+            elif event.key == pygame.K_l:  # Low angle
+                modelo1.translate[0] = -2
+                modelo1.translate[1] = 0
+                modelo1.translate[2] = -8
+                rend.glGenerateFrameBuffer("low_angle.bmp")
+            elif event.key == pygame.K_h:  # High angle
+                modelo1.translate[0] = -2
+                modelo1.translate[1] = -3
+                modelo1.translate[2] = -12
+                rend.glGenerateFrameBuffer("high_angle.bmp")
+            elif event.key == pygame.K_d:  # Dutch angle
+                modelo1.translate[0] = -2
+                modelo1.translate[1] = -1
+                modelo1.translate[2] = -10
+                modelo1.rotate[2] = 15
+                rend.glGenerateFrameBuffer("dutch_angle.bmp")
 
     rend.glClear()
 
