@@ -48,22 +48,25 @@ while isRunning:
                 modelo1.translate[0] = -2
                 modelo1.translate[1] = -1
                 modelo1.translate[2] = -10
+                modelo1.rotate = [0, 0, 0]
                 rend.glGenerateFrameBuffer("medium_shot.bmp")
             elif event.key == pygame.K_l:  # Low angle
                 modelo1.translate[0] = -2
                 modelo1.translate[1] = 0
                 modelo1.translate[2] = -8
+                modelo1.rotate = [0, 0, 0]
                 rend.glGenerateFrameBuffer("low_angle.bmp")
             elif event.key == pygame.K_h:  # High angle
                 modelo1.translate[0] = -2
                 modelo1.translate[1] = -3
                 modelo1.translate[2] = -12
+                modelo1.rotate = [0, 0, 0]
                 rend.glGenerateFrameBuffer("high_angle.bmp")
             elif event.key == pygame.K_d:  # Dutch angle
                 modelo1.translate[0] = -2
                 modelo1.translate[1] = -1
                 modelo1.translate[2] = -10
-                modelo1.rotate[2] = 15
+                modelo1.rotate = [0, 0, 15]
                 rend.glGenerateFrameBuffer("dutch_angle.bmp")
 
     rend.glClear()
@@ -86,7 +89,6 @@ while isRunning:
 
 
     pygame.display.flip()
-    rend.glGenerateFrameBuffer("render.bmp")
     clock.tick(60)
     rend.glRender()
 
