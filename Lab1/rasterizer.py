@@ -2,28 +2,33 @@ import pygame
 from pygame.locals import *
 from gl import Renderer
 from model import Model
-from shaders import vertexShader
+from shaders import vertexShader, fragmentShader
 from gl import *
 
-width = 960
-height = 540
+width = 512
+height = 512
 
 screen = pygame.display.set_mode((width, height))
 clock = pygame.time.Clock()
 
 rend = Renderer(screen) 
 rend.vertexShader = vertexShader
+rend.fragmentShader = fragmentShader
 
-modelo1 = Model("Dog.OBJ")
+modelo1 = Model("mushroom.OBJ")
+modelo1.LoadTexture("textures.bmp")
 modelo1.translate[0] = -2
-modelo1.translate[1] = -1
-modelo1.translate[2] = -10 
+modelo1.translate[1] = -4
+modelo1.translate[2] = -15 
 
-modelo1.scale[0] = 5
-modelo1.scale[1] = 5
+modelo1.scale[0] = 0.7
+modelo1.scale[1] = 0.7
 rend.models.append(modelo1)
 
-rend.glColor(1,0.5,1)
+puntoA = [50, 50, 0]
+puntoB = [250, 500, 0]
+puntoC = [500, 50, 0]
+
 
 
 isRunning = True
@@ -68,6 +73,8 @@ while isRunning:
                 modelo1.translate[2] = -10
                 modelo1.rotate = [0, 0, 15]
                 rend.glGenerateFrameBuffer("dutch_angle.bmp")
+            elif event.key == pygame.K_3:
+                rend.primitiveType = TRIANGLES
 
     rend.glClear()
 
@@ -87,9 +94,8 @@ while isRunning:
     # rend.glFillPolygon(poly4, [1,0.5,1])
     # rend.glFillPolygon(poly5, [0,0,0])
 
-
     pygame.display.flip()
     clock.tick(60)
-    rend.glRender()
+    # rend.glRender()
 
 pygame.quit()
